@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import TerraHero from "@/components/TerraHero";
 import DataDashboard from "@/components/DataDashboard";
 import InstrumentOverview from "@/components/InstrumentOverview";
+import { TerraAnimation } from "@/components/TerraAnimation";
 import { terraApiService } from "@/services/nasaApi";
 import { 
   Satellite, 
@@ -152,6 +153,13 @@ const Index = () => {
 
       {/* Data Dashboard */}
       <DataDashboard />
+
+      {/* Interactive Terra Animation */}
+      <section className="py-20 px-6">
+        <div className="container mx-auto">
+          <TerraAnimation />
+        </div>
+      </section>
 
       {/* Mission Timeline Section */}
       <section className="py-20 px-6 bg-muted/20">
