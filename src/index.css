@@ -8,35 +8,65 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* NASA Terra Theme - Deep Space & Scientific */
+    --background: 218 30% 6%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 25% 8%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 25% 8%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Terra Blue - Primary satellite data color */
+    --primary: 217 91% 60%;
+    --primary-foreground: 218 30% 6%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Space Gray - Secondary interface elements */
+    --secondary: 220 15% 25%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 15% 15%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Terra Orange - Data accent color */
+    --accent: 25 95% 53%;
+    --accent-foreground: 218 30% 6%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 217 91% 60%;
 
-    --radius: 0.5rem;
+    /* Terra Green - Vegetation data */
+    --success: 142 76% 36%;
+    --success-foreground: 210 40% 98%;
+
+    /* Atmospheric data colors */
+    --atmospheric: 197 71% 52%;
+    --atmospheric-foreground: 218 30% 6%;
+
+    --thermal: 340 75% 55%;
+    --thermal-foreground: 210 40% 98%;
+
+    --radius: 0.75rem;
+
+    /* Gradients for space atmosphere effects */
+    --gradient-cosmic: linear-gradient(135deg, hsl(217 91% 60% / 0.1), hsl(25 95% 53% / 0.1));
+    --gradient-aurora: linear-gradient(135deg, hsl(142 76% 36% / 0.2), hsl(197 71% 52% / 0.2));
+    --gradient-thermal: linear-gradient(135deg, hsl(340 75% 55% / 0.1), hsl(25 95% 53% / 0.1));
+
+    /* Shadows for depth and orbital effects */
+    --shadow-orbital: 0 0 50px hsl(217 91% 60% / 0.3);
+    --shadow-data: 0 8px 32px hsl(217 91% 60% / 0.15);
+    --shadow-glow: 0 0 30px hsl(25 95% 53% / 0.4);
+
+    /* Animation timings */
+    --transition-orbital: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-data: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.2s ease-out;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +131,120 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background-image: 
+      radial-gradient(circle at 20% 80%, hsl(217 91% 60% / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(25 95% 53% / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, hsl(142 76% 36% / 0.03) 0%, transparent 50%);
+  }
+}
+
+@layer components {
+  /* Terra Mission Control Components */
+  .terra-card {
+    @apply bg-card border border-border/50 backdrop-blur-sm;
+    box-shadow: var(--shadow-data);
+    background: linear-gradient(135deg, hsl(var(--card) / 0.8), hsl(var(--card) / 0.4));
+  }
+
+  .data-visualization {
+    @apply relative overflow-hidden;
+    background: var(--gradient-cosmic);
+    backdrop-filter: blur(10px);
+  }
+
+  .satellite-orbit {
+    animation: orbit 20s linear infinite;
+  }
+
+  .data-stream {
+    animation: dataFlow 3s ease-in-out infinite;
+  }
+
+  .terra-button-hero {
+    @apply px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg;
+    box-shadow: var(--shadow-orbital);
+    transition: var(--transition-data);
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8));
+  }
+
+  .terra-button-hero:hover {
+    @apply scale-105;
+    box-shadow: var(--shadow-glow);
+  }
+
+  .terra-button-secondary {
+    @apply px-6 py-3 bg-secondary text-secondary-foreground font-medium rounded-lg border border-border;
+    transition: var(--transition-smooth);
+  }
+
+  .terra-button-secondary:hover {
+    @apply bg-secondary/80 border-primary/50;
+  }
+
+  .data-point {
+    @apply w-3 h-3 rounded-full;
+    transition: var(--transition-data);
+  }
+
+  .data-point-atmospheric {
+    @apply bg-atmospheric;
+    box-shadow: 0 0 10px hsl(var(--atmospheric) / 0.6);
+  }
+
+  .data-point-thermal {
+    @apply bg-thermal;
+    box-shadow: 0 0 10px hsl(var(--thermal) / 0.6);
+  }
+
+  .data-point-vegetation {
+    @apply bg-success;
+    box-shadow: 0 0 10px hsl(var(--success) / 0.6);
+  }
+
+  .terra-gradient-text {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  /* Animation Keyframes */
+  @keyframes orbit {
+    0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+  }
+
+  @keyframes dataFlow {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-10px); }
+  }
+
+  @keyframes terraGlow {
+    0%, 100% { box-shadow: var(--shadow-data); }
+    50% { box-shadow: var(--shadow-orbital); }
+  }
+
+  @keyframes pulseData {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+  }
+
+  /* Terra Animation Classes */
+  .animate-terra-glow {
+    animation: terraGlow 4s ease-in-out infinite;
+  }
+
+  .animate-pulse-data {
+    animation: pulseData 2s ease-in-out infinite;
+  }
+
+  .animate-data-stream {
+    animation: dataFlow 3s ease-in-out infinite;
+  }
+
+  .animate-satellite-orbit {
+    animation: orbit 20s linear infinite;
   }
 }

@@ -15,6 +15,12 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // Terra-specific button variants
+        hero: "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:scale-105 hover:shadow-2xl shadow-primary/25 border border-primary/20 backdrop-blur-sm transition-all duration-300",
+        "terra-secondary": "bg-secondary/80 text-secondary-foreground border border-border hover:bg-secondary/60 hover:border-primary/50 backdrop-blur-sm transition-all duration-200",
+        data: "bg-atmospheric/10 text-atmospheric border border-atmospheric/20 hover:bg-atmospheric/20 hover:shadow-lg shadow-atmospheric/10 transition-all duration-200",
+        thermal: "bg-thermal/10 text-thermal border border-thermal/20 hover:bg-thermal/20 hover:shadow-lg shadow-thermal/10 transition-all duration-200",
+        vegetation: "bg-success/10 text-success border border-success/20 hover:bg-success/20 hover:shadow-lg shadow-success/10 transition-all duration-200",
       },
       size: {
         default: "h-10 px-4 py-2",

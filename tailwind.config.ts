@@ -57,6 +57,19 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Terra-specific data visualization colors
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        atmospheric: {
+          DEFAULT: "hsl(var(--atmospheric))",
+          foreground: "hsl(var(--atmospheric-foreground))",
+        },
+        thermal: {
+          DEFAULT: "hsl(var(--thermal))",
+          foreground: "hsl(var(--thermal-foreground))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,10 +93,62 @@ export default {
             height: "0",
           },
         },
+        // Terra mission animations
+        "orbit": {
+          "0%": { 
+            transform: "rotate(0deg) translateX(100px) rotate(0deg)" 
+          },
+          "100%": { 
+            transform: "rotate(360deg) translateX(100px) rotate(-360deg)" 
+          },
+        },
+        "data-flow": {
+          "0%, 100%": { 
+            opacity: "0.4", 
+            transform: "translateY(0)" 
+          },
+          "50%": { 
+            opacity: "1", 
+            transform: "translateY(-10px)" 
+          },
+        },
+        "terra-glow": {
+          "0%, 100%": { 
+            boxShadow: "0 8px 32px hsl(217 91% 60% / 0.15)" 
+          },
+          "50%": { 
+            boxShadow: "0 0 50px hsl(217 91% 60% / 0.3)" 
+          },
+        },
+        "pulse-data": {
+          "0%, 100%": { 
+            transform: "scale(1)", 
+            opacity: "0.8" 
+          },
+          "50%": { 
+            transform: "scale(1.2)", 
+            opacity: "1" 
+          },
+        },
+        "fade-in": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)"
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)"
+          }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "orbit": "orbit 20s linear infinite",
+        "data-flow": "data-flow 3s ease-in-out infinite",
+        "terra-glow": "terra-glow 4s ease-in-out infinite",
+        "pulse-data": "pulse-data 2s ease-in-out infinite",
+        "fade-in": "fade-in 0.6s ease-out",
       },
     },
   },
